@@ -40,8 +40,6 @@ export const Github = () => {
     const [username, setUsername] = useState<string>('');
     const [repos, setRepos] = useState<GithubUser | null>(null);
 
-
-    const apiKey = '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';
     
     // {
     //     "url": "https://api.github.com/users/kp019?username=USERNAME",
