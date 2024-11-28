@@ -45,7 +45,7 @@ export const Github = () => {
 
         try {
             const octokit = new Octokit({
-                auth: apiKey
+                // auth: apiKey
               })
         
             const response = await octokit.request(`GET /users/${username}`, {
