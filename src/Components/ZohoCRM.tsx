@@ -21,9 +21,6 @@ export const ZohoCRM: React.FC = () => {
   const [test1, setTest1] = useState<string>("");
   const [test2, setTest2] = useState<string>("");
 
-  // const selfClientId = "1000.4YW23XBMXY4QGNFKW4TP6REVIY02XH";
-  // const selfClientSecret = "6b8070232c388c3f1bf85c021e9479c9ca0ff4725f";
-  // const selfClientCode = "1000.2d0e8dfa9bfb217589d7bbe70d7b47e3.353fdfb4ba29e1403311cd0aa553471a";
 
   const getModules = async (): Promise<void> => {
     try {
