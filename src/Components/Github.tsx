@@ -41,62 +41,6 @@ export const Github = () => {
     const [repos, setRepos] = useState<GithubUser | null>(null);
 
     
-    // {
-    //     "url": "https://api.github.com/users/kp019?username=USERNAME",
-    //     "status": 200,
-    //     "headers": {
-    //       "cache-control": "private, max-age=60, s-maxage=60",
-    //       "content-type": "application/json; charset=utf-8",
-    //       "etag": "W/\"a5c495bff6b46e55ff07116c996ed3b99960c8a28d9ae739ada82c3765f9efb4\"",
-    //       "last-modified": "Mon, 21 Oct 2024 12:55:04 GMT",
-    //       "x-accepted-oauth-scopes": "",
-    //       "x-github-media-type": "github.v3; format=json",
-    //       "x-github-request-id": "BFC0:2DC384:31C5BF:358E79:674449AE",
-    //       "x-oauth-scopes": "delete_repo, repo, user",
-    //       "x-ratelimit-limit": "5000",
-    //       "x-ratelimit-remaining": "4994",
-    //       "x-ratelimit-reset": "1732529422",
-    //       "x-ratelimit-resource": "core",
-    //       "x-ratelimit-used": "6"
-    //     },
-    //     "data": {
-    //       "login": "Kp019",
-    //       "id": 83325930,
-    //       "node_id": "MDQ6VXNlcjgzMzI1OTMw",
-    //       "avatar_url": "https://avatars.githubusercontent.com/u/83325930?v=4",
-    //       "gravatar_id": "",
-    //       "url": "https://api.github.com/users/Kp019",
-    //       "html_url": "https://github.com/Kp019",
-    //       "followers_url": "https://api.github.com/users/Kp019/followers",
-    //       "following_url": "https://api.github.com/users/Kp019/following{/other_user}",
-    //       "gists_url": "https://api.github.com/users/Kp019/gists{/gist_id}",
-    //       "starred_url": "https://api.github.com/users/Kp019/starred{/owner}{/repo}",
-    //       "subscriptions_url": "https://api.github.com/users/Kp019/subscriptions",
-    //       "organizations_url": "https://api.github.com/users/Kp019/orgs",
-    //       "repos_url": "https://api.github.com/users/Kp019/repos",
-    //       "events_url": "https://api.github.com/users/Kp019/events{/privacy}",
-    //       "received_events_url": "https://api.github.com/users/Kp019/received_events",
-    //       "type": "User",
-    //       "user_view_type": "public",
-    //       "site_admin": false,
-    //       "name": "Krishnaprasad",
-    //       "company": null,
-    //       "blog": "",
-    //       "location": null,
-    //       "email": null,
-    //       "hireable": null,
-    //       "bio": null,
-    //       "twitter_username": null,
-    //       "public_repos": 50,
-    //       "public_gists": 0,
-    //       "followers": 29,
-    //       "following": 18,
-    //       "created_at": "2021-04-28T03:30:24Z",
-    //       "updated_at": "2024-10-21T12:55:04Z"
-    //     }
-    //   }
-
-    
     const getUser = async () => {
 
         try {
