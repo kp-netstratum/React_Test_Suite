@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 
-
 interface Account {
   id: number;
   // Add other account properties as needed
@@ -12,7 +11,6 @@ interface Scrub {
   test2: string;
 }
 
-
 export const ZohoCRM: React.FC = () => {
   const [data, setData] = useState<Account[]>([]);
   const [userId, setUserId] = useState<string>("");
@@ -20,7 +18,6 @@ export const ZohoCRM: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [test1, setTest1] = useState<string>("");
   const [test2, setTest2] = useState<string>("");
-
 
   const getModules = async (): Promise<void> => {
     try {
@@ -42,10 +39,9 @@ export const ZohoCRM: React.FC = () => {
 
   const getScrubs = async (id: number): Promise<void> => {
     // console.log(id);
-
     try {
       await axios
-        .get<{Subform: Scrub[]}>(`http://localhost:3000/getScrubs/${id}`, {
+        .get<{ Subform: Scrub[] }>(`http://localhost:3000/getScrubs/${id}`, {
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
@@ -60,11 +56,9 @@ export const ZohoCRM: React.FC = () => {
     }
   };
 
-  const addScrub = async (data:Scrub, scrubdata:Scrub[], userId:string) => {
-
+  const addScrub = async (data: Scrub, scrubdata: Scrub[], userId: string) => {
     //add data to the existing scrub data
     scrubdata.push(data);
-
 
     // console.log(data, scrubdata, 'datas for scrubbing');
     try {
@@ -84,20 +78,27 @@ export const ZohoCRM: React.FC = () => {
   // console.log(scrubdata);
 
   return (
-    <div className=" relative flex flex-col justify-center items-center h-[100vh] w-full">
-      <div className="relative flex flex-col justify-center items-center gap-5 w-full">
-      <h1 className="text-3xl font-bold">Zoho CRM</h1>
-      <div>
-        <div>
-          note: fetch all the accounts and display them as dropdown and select
-          one to display the details of the account and an add button to add new
-          data. this is for scrubbing.
-        </div>
-        <div className="flex flex-col items-center pt-10 gap-10 w-full">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={getModules}>Fetch Account Data</button>
-            {data.length>0 && 
+    <div className=" relative flex flex-col w-full mx-5">
+      <div className="w-full bg-blue-800 py-10 rounded-lg">
+        <div className="relative flex flex-col justify-center items-center gap-5 w-full pt-5">
+          <h1 className="text-3xl font-bold">Zoho CRM Playground</h1>
+          <div>
+            <div>
+              note: fetch all the accounts and display them as dropdown and
+              select one to display the details of the account and an add button
+              to add new data. this is for scrubbing.
+            </div>
+            <div className="flex flex-col items-center pt-10 gap-10 w-full">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={getModules}
+              >
+                Fetch Account Data
+              </button>
+              {data.length > 0 && (
                 <div className="text-black flex gap-10 justify-center">
-                  <select className="border border-gray-300 px-4 py-2 rounded"
+                  <select
+                    className="border border-gray-300 px-4 py-2 rounded"
                     value={userId}
                     onChange={(e) => {
                       setUserId(e.target.value);
@@ -110,78 +111,103 @@ export const ZohoCRM: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => getScrubs(userId)}>Fetch Scrubs</button>
-                  {scrubdata.length > 0 && 
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => getScrubs(userId)}
+                  >
+                    Fetch Scrubs
+                  </button>
+                  {scrubdata.length > 0 && (
                     <button
-                        onClick={() => setIsModalOpen(true)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        add scrub data
-                    </button>}
+                      onClick={() => setIsModalOpen(true)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      add scrub data
+                    </button>
+                  )}
                 </div>
-            }
-          <div>
-            {scrubdata.length > 0 ? (
-              <table className="min-w-full border-collapse border border-gray-200">
-                <thead>
-                  <tr>
-                    <th className="border border-gray-300 px-4 py-2">Test 1</th>
-                    <th className="border border-gray-300 px-4 py-2">Test 2</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {scrubdata.map((item, index) => (
-                    <tr key={index}>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {item?.test1}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2">
-                        {item?.test2}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <div></div>
-            )}
+              )}
+              <div>
+                {scrubdata.length > 0 ? (
+                  <table className="min-w-full border-collapse border border-gray-200">
+                    <thead>
+                      <tr>
+                        <th className="border border-gray-300 px-4 py-2">
+                          Test 1
+                        </th>
+                        <th className="border border-gray-300 px-4 py-2">
+                          Test 2
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {scrubdata.map((item, index) => (
+                        <tr key={index}>
+                          <td className="border border-gray-300 px-4 py-2">
+                            {item?.test1}
+                          </td>
+                          <td className="border border-gray-300 px-4 py-2">
+                            {item?.test2}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-      {isModalOpen && (
-        <div className="absolute z-20 w-1/2 h-1/2 bg-white p-5 rounded shadow-lg text-black">
-          <form>
-            <input
-              type="text"
-              name="test1"
-              onChange={(e)=>setTest1(e.target.value)}
-              className="border border-gray-300 px-4 py-2 w-full"
-              placeholder="Test 1"
-              required
-            />
-            <input
-              type="text"
-              name="test2"
-              onChange={(e)=>setTest2(e.target.value)}
-              className="border border-gray-300 px-4 py-2 w-full"
-              placeholder="Test 2"
-              required
-            />
-            <button
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                addScrub({ test1, test2 }, scrubdata, userId);
-                setIsModalOpen(false);
-                getScrubs(userId);
-              }}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Add
-            </button>
-          </form>
-        </div>
+        {isModalOpen && (
+          <div className="absolute z-20 w-1/2 h-1/2 bg-white p-5 rounded shadow-lg text-black">
+            <form>
+              <input
+                type="text"
+                name="test1"
+                onChange={(e) => setTest1(e.target.value)}
+                className="border border-gray-300 px-4 py-2 w-full"
+                placeholder="Test 1"
+                required
+              />
+              <input
+                type="text"
+                name="test2"
+                onChange={(e) => setTest2(e.target.value)}
+                className="border border-gray-300 px-4 py-2 w-full"
+                placeholder="Test 2"
+                required
+              />
+              <button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addScrub({ test1, test2 }, scrubdata, userId);
+                  setIsModalOpen(false);
+                  getScrubs(userId);
+                }}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Add
+              </button>
+            </form>
+          </div>
         )}
+      </div>
+      <div className="flex flex-row justify-center items-center gap-5 pt-10 cursor-pointer">
+        <div
+          className="px-5 py-2 bg-white font-bold text-slate-900 rounded-md"
+          onClick={() => {
+            window.open(
+              "https://roomy-calliandra-844.notion.site/Zoho-CRM-API-1531aacc8c9a8011a87dcbf4879d5d99?pvs=74",
+              "_blank"
+            );
+          }}
+        >
+          view Documentation
+        </div>
+      </div>
     </div>
   );
 };
